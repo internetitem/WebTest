@@ -10,6 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.internetitem.test.web.dataModel.TestObject;
+import com.internetitem.test.web.requestInfo.RemoteInfo;
+import com.internetitem.test.web.requestInfo.RequestInfo;
 
 @Path("/test")
 public class TestService {
@@ -36,4 +38,11 @@ public class TestService {
 		return new TestObject("Hello: string[" + obj.getString() + "], num[" + obj.getNumber() + "], date [" + obj.getDate() + "]", 0, null);
 	}
 
+	@GET
+	@Path("/whoami")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String whoAmI(@RemoteInfo RequestInfo requestInfo) {
+		return "You are " + requestInfo;
+
+	}
 }
