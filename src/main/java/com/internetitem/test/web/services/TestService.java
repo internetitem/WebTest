@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.internetitem.test.web.dataModel.TestObject;
+import com.internetitem.test.web.freemarker.TemplateName;
 import com.internetitem.test.web.requestInfo.RemoteInfo;
 import com.internetitem.test.web.requestInfo.RequestInfo;
 
@@ -25,9 +26,11 @@ public class TestService {
 
 	@GET
 	@Path("/testJson")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_HTML })
+	@TemplateName(name = "/test.ftl")
 	public TestObject testObject() {
-		return new TestObject("Hello", 72, new Date());
+		TestObject obj = new TestObject("Hello", 72, new Date());
+		return obj;
 	}
 
 	@POST
